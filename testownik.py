@@ -97,3 +97,4 @@ while(sum(pointList)>0):
 				print("Cannot save. Do you have permission to save?")
 				if(input("Exit anyway? y/N\n>> ") in ['y','Y']):
 					exit(0)
+print("it's all done, you did a great job! *now go to sleep*")
