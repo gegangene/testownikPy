@@ -20,23 +20,31 @@ def saveSave(toSave):
 	return True
 
 def displayQue(txtName):
-	answer=0
+	answer=[]
 	boldFlag=False
 	counter=0;
+	descriptions=[]
 	with open(txtName,"r",1,"utf-8") as fileHandle:
 		for line in fileHandle:
 			if(line[0]=="X"):
-				answer=line[1:len(line)-1]
+				answer=list(line[1:len(line)-1])
 				boldFlag=True
 			else:
 				if(boldFlag):
 					print("\n\033[1m\033[93m",line,"\033[0m")
 					boldFlag=False
 				else:
-					print(f"\t{counter}. {line}")
-					counter+=1
+					descriptions.append(line)
+	# shuffling answers
+	toShuffle=list(zip(answer,descriptions))
+	random.shuffle(toShuffle)
+	answer, descriptions=zip(*toShuffle)
+	# printing possible answers
+	for line in descriptions:
+		print(f"\t{counter}. {line}")
+		counter+=1
 	print(txtName)
-	return answer
+	return ''.join(answer)
 
 def ansStandarize(answer,noOfPossibilities):
 	ansList=["0"]*noOfPossibilities
@@ -63,7 +71,7 @@ if(load):
 	fileList=load[1]
 
 else:
-	# getting all answers files
+	# getting all descriptions files
 	fileList=os.listdir()
 	for fname in fileList:
 		if ".txt" not in fname:
