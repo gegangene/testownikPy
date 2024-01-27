@@ -55,7 +55,7 @@ def revAnsStandarize(answer):
 	return "".join(ansList)
 
 
-# reading save file
+#reading save file
 pointList=[]
 load=loadSave()
 if(load):
@@ -77,7 +77,7 @@ while(sum(pointList)>0):
 	if(pointList[drawn]>0):
 		correctAnswer=displayQue(fileList[drawn])
 		print(f"{pointList[drawn]}/2")
-		print(f"done: {sum(pointList)/len(pointList)*2}%")
+		print(f"done: {100-(sum(pointList)/(len(pointList)*2)*100)}%")
 		try:
 			userAnswer=input("Your answer: ")
 			if correctAnswer==ansStandarize(userAnswer,len(correctAnswer)):
