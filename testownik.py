@@ -71,7 +71,7 @@ if(load):
 	fileList=load[1]
 
 else:
-	# getting all descriptions files
+	# getting all answers files
 	fileList=os.listdir()
 	for fname in fileList:
 		if ".txt" not in fname:
@@ -85,12 +85,12 @@ while(sum(pointList)>0):
 	if(pointList[drawn]>0):
 		correctAnswer=displayQue(fileList[drawn])
 		print(f"{pointList[drawn]}/2")
-		print(f"done: {100-(sum(pointList)/(len(pointList)*2)*100)}%")
+		print(f"done: {100-(sum(pointList)/(len(pointList)*2)*100)}%\n[remaining points: {sum(pointList)}]")
 		try:
 			userAnswer=input("Your answer: ")
 			if correctAnswer==ansStandarize(userAnswer,len(correctAnswer)):
 				pointList[drawn]-=1
-				print("\033[92mCorrect answer.")
+				print("\033[92mCorrect answer.\033[0m")
 				time.sleep(1)
 			else:
 				pointList[drawn]+=1
@@ -105,4 +105,4 @@ while(sum(pointList)>0):
 				print("Cannot save. Do you have permission to save?")
 				if(input("Exit anyway? y/N\n>> ") in ['y','Y']):
 					exit(0)
-print("it's all done, you did a great job! *now go to sleep*")
+print("\nit's all done, you did a great job! \033[4m*now go to sleep*\033[0m")
